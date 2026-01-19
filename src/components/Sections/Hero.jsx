@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 
 function Hero() {
   /* -------------------- PARTICLES -------------------- */
@@ -46,12 +46,12 @@ function Hero() {
   }, [])
 
   /* -------------------- TYPING EFFECT -------------------- */
-  const textArray = [
+  const textArray = useMemo(() => [
     "Full Stack Developer",
     "Cloud Enthusiast",
     "JavaScript Developer",
     "Node.js Developer",
-  ]
+  ], [])
 
   const typingDelay = 80
   const erasingDelay = 50
@@ -81,12 +81,14 @@ function Hero() {
         setIsDeleting(true)
       }, newTextDelay)
     } else if (isDeleting && charIndex === 0) {
-      setIsDeleting(false)
-      setTextIndex((prev) => (prev + 1) % textArray.length)
+      timeout = setTimeout(() => {
+        setIsDeleting(false)
+        setTextIndex((prev) => (prev + 1) % textArray.length)
+      }, 0)
     }
 
     return () => clearTimeout(timeout)
-  }, [charIndex, isDeleting, textIndex])
+  }, [charIndex, isDeleting, textIndex, textArray])
 
   /* -------------------- UI -------------------- */
   return (
