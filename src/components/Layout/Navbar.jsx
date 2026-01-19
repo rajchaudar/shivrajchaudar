@@ -220,6 +220,14 @@ function Navbar({ showSponsor }) {
                 )
               })}
             </div>
+            <div className="border-t border-gray-200/50 dark:border-gray-700/50 flex justify-center">
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="p-3 rounded-full bg-gray-500/10 hover:bg-gray-500/20 dark:bg-white/30 dark:hover:bg-white/20"
+                >
+                  {darkMode ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+                </button>
+              </div>
           </div>
         </>
       )}
