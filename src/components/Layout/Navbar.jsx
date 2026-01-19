@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { MdLightMode, MdDarkMode } from "react-icons/md"
 
-function Navbar() {
+function Navbar({ showSponsor }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -67,19 +67,41 @@ function Navbar() {
   return (
     <>
       {/* ================= PROGRESS BAR ================= */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[999] pointer-events-none">
+      <div
+        className={`
+          fixed top-0 left-0 w-full h-1 z-[999] pointer-events-none
+          transition-opacity duration-300
+          ${showSponsor ? "opacity-0" : "opacity-100"}
+        `}
+      >
         <div
-          className="h-full origin-left bg-gradient-to-r from-purple-200 to-purple-300 dark:from-purple-300 dark:to-purple-400 shadow-lg"
+          className="h-full origin-left bg-gradient-to-r from-purple-200 to-purple-300 dark:from-purple-300 dark:to-purple-400"
           style={{ transform: `scaleX(${progress})` }}
         />
       </div>
 
       {/* ================= NAVBAR ================= */}
-      <nav className="fixed top-2 left-0 right-0 z-50">
+      <nav
+        className={`
+          fixed top-2 left-0 right-0 z-50
+          transition-all duration-300
+          ${showSponsor ? "opacity-40 blur-sm pointer-events-none" : "opacity-100"}
+        `}
+      >
+
+        {/* Top strip */}
+        <div
+          aria-hidden
+          className="
+            absolute -top-2 left-0 right-0 h-2 
+            bg-[#928aff]/70 dark:bg-[#6c63ea]/70
+            pointer-events-none
+          "
+        />
+
+        {/* Main bar */}
         <div className="
-          mx-auto max-w-7xl
-          h-14
-          px-6
+          relative mx-auto max-w-7xl h-14 px-6
           flex items-center justify-between
           rounded-2xl
           backdrop-blur-xl
@@ -90,14 +112,11 @@ function Navbar() {
           <a
             href="#home"
             className="
-              relative
-              font-bold text-xl
+              relative font-bold text-xl
               text-black dark:text-white
-              hover:text-blue-600
-              transition
+              hover:text-blue-600 transition
               after:absolute after:left-0 after:bottom-0
-              after:h-[2px] after:w-full
-              after:bg-blue-600
+              after:h-[2px] after:w-full after:bg-blue-600
               after:origin-left after:scale-x-0
               after:transition-transform after:duration-300
               hover:after:scale-x-100
@@ -113,7 +132,7 @@ function Navbar() {
               const active = activeSection === id
 
               return (
-                <li key={label} className="relative">
+                <li key={label}>
                   <a
                     href={href}
                     className={`
@@ -121,8 +140,7 @@ function Navbar() {
                       text-gray-700 dark:text-gray-300
                       hover:text-blue-600
                       after:absolute after:left-0 after:bottom-0
-                      after:h-[2px] after:w-full
-                      after:bg-blue-600
+                      after:h-[2px] after:w-full after:bg-blue-600
                       after:origin-left after:scale-x-0
                       after:transition-transform after:duration-300
                       hover:after:scale-x-100
@@ -138,13 +156,13 @@ function Navbar() {
             {/* Dark Mode Toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full bg-gray-100/50 hover:bg-gray-400/50 dark:bg-white/75 dark:hover:bg-gray-200/50"
+              className="p-2 rounded-full bg-gray-100/50 hover:bg-gray-300/50 dark:bg-white/70 dark:hover:bg-gray-200/60"
             >
               {darkMode ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
             </button>
           </ul>
 
-          {/* Mobile Button */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-2xl text-black dark:text-white"
             onClick={() => setMenuOpen(true)}
@@ -155,24 +173,20 @@ function Navbar() {
       </nav>
 
       {/* ================= MOBILE MENU ================= */}
-      {menuOpen && (
+      {menuOpen && !showSponsor && (
         <>
-          {/* Backdrop */}
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
             onClick={() => setMenuOpen(false)}
           />
 
-          {/* Slide-down Menu */}
           <div className="
             fixed top-0 left-0 right-0 z-50
             bg-white/80 dark:bg-gray-900/80
             backdrop-blur-xl
             border-b border-white/20 dark:border-white/10
-            rounded-b-3xl
-            shadow-2xl
+            rounded-b-3xl shadow-2xl
           ">
-            {/* Header */}
             <div className="flex justify-between items-center px-6 py-5">
               <span className="text-xl font-semibold text-black dark:text-white">
                 Shivraj Chaudar
@@ -185,7 +199,6 @@ function Navbar() {
               </button>
             </div>
 
-            {/* Links */}
             <div className="px-6 pb-6 space-y-4">
               {navLinks.map(([href, label]) => {
                 const id = href.replace("#", "")
@@ -196,27 +209,16 @@ function Navbar() {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className={`
-                      block text-lg font-medium transition
-                      ${active
+                    className={`block text-lg font-medium ${
+                      active
                         ? "text-blue-600"
-                        : "text-gray-800 dark:text-gray-200 hover:text-blue-600"}
-                    `}
+                        : "text-gray-800 dark:text-gray-200 hover:text-blue-600"
+                    }`}
                   >
                     {label}
                   </a>
                 )
               })}
-
-              {/* Dark Mode Toggle */}
-              <div className="pt-4 border-t border-gray-200/50 dark:border-gray-700/50 flex justify-center">
-                <button
-                  onClick={() => setDarkMode(!darkMode)}
-                  className="p-3 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-800/50"
-                >
-                  {darkMode ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
-                </button>
-              </div>
             </div>
           </div>
         </>

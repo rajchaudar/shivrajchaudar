@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react"
 
-function Hero() {
+function Hero({ showSponsor, setShowSponsor }) {
   /* -------------------- PARTICLES -------------------- */
   useEffect(() => {
     if (window.particlesJS) {
@@ -95,13 +95,19 @@ function Hero() {
     <>
     <section
       id="home"
-      className="min-h-screen flex items-center bg-white/20 justify-center px-6 relative overflow-hidden"
+      className="min-h-screen flex items-center bg-white/20 justify-center px-6 relative overflow-hidden "
     >
       {/* Particles Background */}
       <div id="particles-js" className="absolute inset-0 z-0" />
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-2xl">
+      <div
+  className={`
+    relative z-10 text-center max-w-2xl
+    transition-all duration-300
+    ${showSponsor ? "opacity-40 blur-sm pointer-events-none" : "opacity-100"}
+  `}
+>
 
       {/* Profile Image */}
       <div className="flex justify-center mb-6">
@@ -156,16 +162,127 @@ function Hero() {
           cloud technologies, and seamless user experiences.
         </p>
 
-        {/* CTA */}
-        <a
-          href="https://shivrajassets.s3.eu-north-1.amazonaws.com/SHIVRAJ-CHAUDAR-B.E.-ComputerScience%26Engineering.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-6 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
-        >
-          Download Resume
-        </a>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://shivrajassets.s3.eu-north-1.amazonaws.com/SHIVRAJ-CHAUDAR-B.E.-ComputerScience%26Engineering.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-block px-6 py-3 rounded-full
+              bg-blue-600 text-white font-semibold
+              hover:bg-blue-700 transition
+            "
+          >
+            Download Resume
+          </a>
+
+          {/* Sponsor Me */}
+          <button
+            onClick={() => setShowSponsor(true)}
+            className="
+              inline-block px-6 py-3 rounded-full
+              bg-white/70 dark:bg-gray-900/70
+              text-gray-900 dark:text-white
+              font-semibold
+              backdrop-blur-md
+              border border-white/40 dark:border-white/10
+              hover:bg-white hover:scale-[1.03]
+              transition-all
+            "
+          >
+            💖 Sponsor Me
+          </button>
+        </div>
       </div>
+      {showSponsor && (
+      <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+            onClick={() => setShowSponsor(false)}
+          />
+
+          {/* Popup */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+            <div
+              className="
+                w-full max-w-md
+                rounded-3xl
+                bg-white/80 dark:bg-gray-900/80
+                backdrop-blur-xl
+                border border-white/30 dark:border-white/10
+                shadow-2xl
+                p-6
+                animate-fadeIn
+              "
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold text-black dark:text-white">
+                  Support My Work
+                </h3>
+                <button
+                  onClick={() => setShowSponsor(false)}
+                  className="w-9 h-9 rounded-full bg-gray-200/70 dark:bg-gray-400 dark:text-white "
+                >✕
+                </button>
+              </div>
+
+              {/* Content */}
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-6">
+                Your support helps me build open-source projects, learn deeply,
+                and create quality content.
+              </p>
+
+              {/* Placeholder buttons */}
+              <div className="space-y-3">
+                {/* GitHub Sponsors */}
+                <a
+                  href="https://github.com/sponsors/rajchaudar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    block w-full
+                    px-4 py-3 rounded-xl
+                    bg-blue-400 dark:bg-gray-900
+                    text-gray-900 dark:text-white
+                    font-medium text-center
+                    border border-gray-200 dark:border-gray-700
+                    hover:bg-blue-500 dark:hover:bg-gray-800
+                    transition
+                  "
+                >
+                GitHub Sponsors
+                </a>
+
+                {/* PayU / UPI */}
+                <a
+                  href="https://v.payu.in/PAYUMN/4IZs6vJjhnKX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    block w-full
+                    px-4 py-3 rounded-xl
+                    bg-green-300 dark:bg-gray-900
+                    text-gray-900 dark:text-white
+                    font-medium text-center
+                    border border-gray-200 dark:border-gray-700
+                    hover:bg-green-400 dark:hover:bg-gray-800
+                    transition
+                  "
+                >
+                PayU / UPI & Cards
+                </a>
+              </div>
+
+              <p className="mt-6 text-xs text-center text-gray-500 dark:text-gray-400">
+                Thank you for even considering.
+              </p>
+            </div>
+          </div>
+        </>
+      )}
     </section>
   </>
     
