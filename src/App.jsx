@@ -18,6 +18,7 @@ import RefundPolicy from "./pages/RefundPolicy"
 import CancellationPolicy from "./pages/CancellationPolicy"
 import Disclaimer from "./pages/Disclaimer"
 import Contact from "./pages/Contact"
+import Pricing from "./pages/Pricing"
 import './App.css'
 import { BsRouter } from 'react-icons/bs'
 
@@ -27,10 +28,20 @@ function App() {
   <Router>
     <div className="relative min-h-screen overflow-hidden">
     <div
-      className="
-        fixed inset-0 -z-10 bg-gradient-to-b from-[#776dff] via-[#f98aff] via-[#f97ab5] to-[#f7e4e8]
-       dark:from-[#0b21e6] dark:via-[#983ed3] dark:via-[#8a33b0] dark:to-[#cd258f]"/>
+        className="
+          fixed inset-0 -z-10
+          bg-gradient-to-b
+          from-[#6f6aff]
+          via-[#ee7fe6]
+          via-[#f07ab1]
+          to-[#f5dfe5]
 
+          dark:from-[#1a2ee8]
+          dark:via-[#7e3ac9]
+          dark:via-[#7a2fa6]
+          dark:to-[#b92b86]
+        "
+      />
       <div className="fixed inset-0 -z-10 backdrop-blur-[120px]" />
 
       <ScrollToTop />
@@ -55,6 +66,7 @@ function App() {
           <Route path="/cancellation-policy" element={<CancellationPolicy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path='/pricing' element={<Pricing />} />
       </Routes>
       <Footer />
     </div>
