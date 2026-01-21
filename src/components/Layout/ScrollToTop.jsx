@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { FaArrowUp } from "react-icons/fa"
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false)
+  const { pathname, hash } = useLocation()
 
+  // Button visibility
   useEffect(() => {
     const onScroll = () => {
       setVisible(window.scrollY > 300)
@@ -11,6 +14,20 @@ function ScrollToTop() {
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  // 🔑 Hash scrolling fix
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 0)
+    } else {
+      window.scrollTo({ top: 0 })
+    }
+  }, [pathname, hash])
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })

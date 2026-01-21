@@ -1,13 +1,13 @@
 import { useRef, useState } from "react"
 import emailjs from "@emailjs/browser"
-import SectionSeparator from "../Sections/SectionSeparator"
+import SectionSeparator from "./SectionSeparator"
 import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaGlobe,
 } from "react-icons/fa"
 
-function Contact() {
+function Contacts() {
   const formRef = useRef(null)
   const [sending, setSending] = useState(false)
   const [status, setStatus] = useState({ type: "", message: "" })
@@ -153,4 +153,4 @@ function InfoItem({ icon, text }) {
   )
 }
 
-export default Contact
+export default Contacts

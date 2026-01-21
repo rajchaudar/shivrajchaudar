@@ -44,7 +44,15 @@ function Footer() {
         <div className="mt-4 flex justify-center flex-wrap gap-2 text-sm text-blue-600">
           <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
           <Separator />
-          <FooterLink href="/terms-of-service">Terms of Service</FooterLink>
+          <FooterLink href="/terms-and-conditions">Terms & Conditions</FooterLink>
+          <Separator />
+          <FooterLink href="/refund-policy">Refund Policy</FooterLink>
+          <Separator />
+          <FooterLink href="/cancellation-policy">Cancellation Policy</FooterLink>
+          <Separator />
+          <FooterLink href="/disclaimer">Disclaimer</FooterLink>
+          <Separator />
+          <FooterLink href="/contact">Contact</FooterLink>
           <Separator />
           <FooterLink href="/sitemap.xml">Sitemap</FooterLink>
         </div>

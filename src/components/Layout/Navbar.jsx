@@ -3,7 +3,9 @@ import { MdLightMode, MdDarkMode } from "react-icons/md"
 
 function Navbar({ showSponsor }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark"
+  })
   const [progress, setProgress] = useState(0)
   const [activeSection, setActiveSection] = useState("home")
 
@@ -52,16 +54,22 @@ function Navbar({ showSponsor }) {
 
   /* ================= DARK MODE ================= */
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode)
+    if (darkMode) {
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
   }, [darkMode])
 
   const navLinks = [
-    ["#education", "Education"],
-    ["#projects", "Projects"],
-    ["#skills", "Skills"],
-    ["#tools", "Tools"],
-    ["#certifications", "Certifications"],
-    ["#contact", "Contact"],
+    ["/#education", "Education"],
+    ["/#projects", "Projects"],
+    ["/#skills", "Skills"],
+    ["/#tools", "Tools"],
+    ["/#certifications", "Certifications"],
+    ["/#contact", "Contact"],
   ]
 
   return (
@@ -110,10 +118,10 @@ function Navbar({ showSponsor }) {
         ">
           {/* Logo */}
           <a
-            href="#home"
+            href="/#home"
             className="
               relative font-bold text-xl
-              text-black dark:text-white
+              text-black dark:text-gray-300
               hover:text-blue-600 transition
               after:absolute after:left-0 after:bottom-0
               after:h-[2px] after:w-full after:bg-blue-600

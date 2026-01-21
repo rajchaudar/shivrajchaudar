@@ -231,8 +231,8 @@ function Hero({ showSponsor, setShowSponsor }) {
 
               {/* Content */}
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-6">
-                Your support helps me build open-source projects, learn deeply,
-                and create quality content.
+                This is a voluntary sponsorship to support my open-source work,
+                learning, and personal projects. No physical goods are shipped.
               </p>
 
               {/* Placeholder buttons */}
@@ -245,11 +245,11 @@ function Hero({ showSponsor, setShowSponsor }) {
                   className="
                     block w-full
                     px-4 py-3 rounded-xl
-                    bg-blue-400 dark:bg-gray-900
+                    bg-blue-400 dark:bg-blue-400
                     text-gray-900 dark:text-white
                     font-medium text-center
                     border border-gray-200 dark:border-gray-700
-                    hover:bg-blue-500 dark:hover:bg-gray-800
+                    hover:bg-blue-500 dark:hover:bg-blue-500
                     transition
                   "
                 >
@@ -264,11 +264,11 @@ function Hero({ showSponsor, setShowSponsor }) {
                   className="
                     block w-full
                     px-4 py-3 rounded-xl
-                    bg-green-300 dark:bg-gray-900
+                    bg-green-300 dark:bg-green-300/90
                     text-gray-900 dark:text-white
                     font-medium text-center
                     border border-gray-200 dark:border-gray-700
-                    hover:bg-green-400 dark:hover:bg-gray-800
+                    hover:bg-green-400 dark:hover:bg-green-400
                     transition
                   "
                 >
