@@ -258,7 +258,7 @@ function Hero({ showSponsor, setShowSponsor }) {
 
                 {/* PayU / UPI */}
                 <a
-                  href="https://v.payu.in/PAYUMN/4IZs6vJjhnKX"
+                  href="https://u.payu.in/PAYUMN/kIMlnd8P67Vg"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
