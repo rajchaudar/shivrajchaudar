@@ -46,11 +46,9 @@ function App() {
 
       <ScrollToTop />
       <Navbar showSponsor={showSponsor} />
-
       <Routes>
           <Route path="/" element={
             <>
-              <Hero setShowSponsor={setShowSponsor} />
               <Hero showSponsor={showSponsor} setShowSponsor={setShowSponsor} />
               <Education />
               <Projects />
