@@ -95,7 +95,7 @@ function Hero({ showSponsor, setShowSponsor }) {
     <>
     <section
       id="home"
-      className="min-h-screen flex items-center bg-white/20 justify-center px-6 relative overflow-hidden "
+      className="min-h-screen flex items-center pt-6.25 sm:pt-0 bg-white/20 justify-center px-6 relative overflow-hidden "
     >
       {/* Particles Background */}
       <div id="particles-js" className="absolute inset-0 z-0" />
