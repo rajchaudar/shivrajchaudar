@@ -165,7 +165,7 @@ function Hero({ showSponsor, setShowSponsor }) {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://shivrajassets.s3.eu-north-1.amazonaws.com/SHIVRAJ-CHAUDAR-B.E.-ComputerScience%26Engineering.pdf"
+            href="https://drive.google.com/file/d/1oPoTD-3pPQYawOgMPWy_yl9Wvhd_I9XO/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="
